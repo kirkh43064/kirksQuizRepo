@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>JavaScript Quizr</title>
+        <link rel="stylesheet" href="assets/css/styles.css" />
+    </head>
+
+    <body>
+        <header>
+
+            <div class="row">
+
+                <div class="scoreboard">
+
+                    <button id="view_scores" type="button">View Highscores</button>
+
+                </div>
+            
+
+                <div class="countdown_timer">
+
+                    <p id="time">Score: </p>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+            <section id="intro">
+
+                <div class="row">
+
+                    <div id="title">
+
+                        <h1 id="intro_title">Welcome to the JavaScript Fundamentals Quiz!</h1>
+
+                        <p id="intro_text">Try to answer the following javascript questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
+
+                        <button id="start" type="button">Start Quiz</button>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="quiz">
+
+                <div class="row">
+
+                    <div id="questions">
+
+                        <h2 id="question">question placeholder</h2>
+
+                        <button id="a" onclick="checkAnswer('a')">A</button>
+
+                        <button id="b" onclick="checkAnswer('b')">B</button>
+
+                        <button id="c" onclick="checkAnswer('c')">C</button>
+
+                        <button id="d" onclick="checkAnswer('d')">D</button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section id="game_over">
+
+                <div class="row">
+                    
+                    <div class="">
+
+                        <h2>All done!</h2>
+
+                        <p>Your final score is: </p>
+
+                        <p>Enter initials: <span id=""><input placeholder="initials" id="initials" /></span>
+
+                            <button id="submit-score" type="button">Submit</button>
+                        </p>
+
+                    </div>
+
+                </div>
+                
+            </section>
+
+            
+
+
+        </main>
+
+        <script src="assets/js/script.js"></script>
+
+    </body>
+
+</html>
