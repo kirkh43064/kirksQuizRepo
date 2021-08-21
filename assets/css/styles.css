@@ -1,7 +1,7 @@
 :root{
-    background-color: cornflowerblue;
-    font-family: font-family: 'Play', sans-serif;;
-    }
+    background-color: rosybrown;
+    font-family: 'Play', sans-serif;;
+}
     
     li {
         padding-bottom: 3px;
@@ -12,7 +12,6 @@
     
     p {
         color: black;
-        text-shadow: .5px .5px white;
         text-align: center;
         font-size: xx-large;
     
@@ -24,7 +23,8 @@
     }
 
     h2 {
-        margin-top: -.5rem;
+        text-align: center;
+        font-size: 36px;
     }
 
     input {
@@ -69,7 +69,7 @@
         flex-direction: column;
       }
     
-      button {
+    button {
         display: inline-block;
         background-color: #5e6df1;
         border-radius: 10px;
@@ -93,11 +93,6 @@
         justify-content: center;
         
     }
-
-    /* #start {
-        align-items: center;
-        justify-content: center;
-    } */
     
     #time {
         background-color: #5a69f0;
@@ -119,30 +114,33 @@
     
     #game_over {
         display: none;
+    }
+
+    .final_score {
+        display: flex;
         text-align: center;
         align-items: center;
         flex-direction: column;
     }
     
-    #high_row {
-        height: 1.5rem;
-        border: groove 2px;
+    #your_score {
+        font-weight: bold;
     }
-    
+
     #high_scores {
         display: none;
-        height: 100%;
-        width: 100%;
+    }
+
+    .high_row {
+        border: groove 2px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
     
-    #highscore-header {
-        display:flex;
-        justify-content: space-around;
-        border-bottom-style: outset;
-        margin-bottom: .5rem;
+    .top_scores {
+        flex-direction: column;
+        justify-content: center;
         background-color: #5e6df1;
         color: #eeeeee;
     }
@@ -152,24 +150,9 @@
         height: 1.75rem;
     }
     
-    #highscore-initials {
-        display: inline-block;
-        padding-left: 9.5rem;
-        font-weight: bold;
-    }
-    
-    #highscore-score {
-        float: right;
-        padding-right: 8.75rem;
-        font-weight: bold;
-    }
-    
-    #finalScore {
-        padding-bottom: 0.5rem;
-        font-size: x-large;
-        font-weight: bold;
-    }
-    
     #reset_button {
-        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
+}

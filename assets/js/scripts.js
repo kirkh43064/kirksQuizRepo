@@ -1,7 +1,7 @@
 // Gathering HTML elements for manipulation
 let quizBody = document.getElementById("quiz");
 let resultsEl = document.getElementById("result");
-let finalScoreEl = document.getElementById("finalScore");
+let finalScoreEl = document.getElementById("your_score");
 let gameoverDiv = document.getElementById("game_over");
 let questionsEl = document.getElementById("question");
 let quizTimer = document.getElementById("time");
@@ -52,26 +52,7 @@ const questions = [
       choices: ["JavaScript", "terminal / bash", "for loops", "console.log"],
       answer: "console.log"
     }
-  ];
-
-// Start Quiz function starts the TimeRanges, hides the start button, and displays the first quiz question.
-    function startQuiz() {
-        gameoverDiv.style.display = "none";
-        startIntro.style.display = "none";
-        generateQuizQuestion();
-
-        //Timer
-        timerInterval = setInterval(function() {
-            timeLeft--;
-            quizTimer.textContent = "Time left: " + timeLeft;
-    
-            if(timeLeft === 0) {
-                clearInterval(timerInterval);
-                showScore();
-        }
-      }, 1000);
-    quizBody.style.display = "flex";
-}
+];
 
   // Other global variables
 let timeLeft = 90;
@@ -80,68 +61,52 @@ let score = 0;
 let correct;
 let currentQuestion = "";
 
-function generateQuizQuestion(){
-    startIntro.style.display = "none";
-    gameoverDiv.style.display = "none";
-    
+quizBody.style.display = "none";
+gameoverDiv.style.display = "none";
+highscoreContainer.style.display = "none";
 
-    for (leti=0; i < questions.length; i++) {
-        let currentQuestion = questions.title[i];
-        questionsEl.innerHTML = "<p>" + currentQuestion.title + "</p>";
-        buttonA.innerHTML = currentQuestion.choices[0];
-        buttonB.innerHTML = currentQuestion.choices[1];
-        buttonC.innerHTML = currentQuestion.choices[2];
-        buttonD.innerHTML = currentQuestion.choices[3];
+function generateQuizQuestion(){
+
+    for (let i=0; i < questions.length; i++) {
+        let currentQuestion = questions[i].title;
+        questionsEl.innerHTML = "<p>" + currentQuestion + "</p>";
+        buttonA.innerHTML = questions[i].choices[0];
+        buttonB.innerHTML = questions[i].choices[1];
+        buttonC.innerHTML = questions[i].choices[2];
+        buttonD.innerHTML = questions[i].choices[3];
+
+        if (currentQuestion[i] === questions.length) {
+            return showScore();
+        }
 
     } 
 
-    if (currentQuestion[i] === questions.length) {
-        return showScore();
-    }
 };
 
-// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
-function showScore(){
-    quizBody.style.display = "none"
-    gameoverDiv.style.display = "flex";
-    clearInterval(timerInterval);
-    highscoreInputName.value = "";
-    finalScoreEl.innerHTML = "You got " + score + " out of " + quizQuestions.length + " correct!";
+// Start Quiz function starts the Timer, hides the start button, and displays the first quiz question.
+function startQuiz() {
+
+    startIntro.style.display = "none";
+
+    generateQuizQuestion();
+
+    //Timer
+    timerInterval = setInterval(function() {
+        timeLeft--;
+        quizTimer.textContent = "Time left: " + timeLeft;
+    
+        if(timeLeft === 0) {
+          clearInterval(timerInterval);
+          showScore();
+        }
+      }, 1000);
+    quizBody.style.display = "flex";
 }
 
-// On click of the submit button, we run the function highscore that saves and stringifies the array of high scores already saved in local stoage
-// as well as pushing the new user name and score into the array we are saving in local storage. Then it runs the function to show high scores.
-submitScoreBtn.addEventListener("click", function highscore(){
-    
-    
-    if(highscoreInputName.value === "") {
-        alert("Initials cannot be blank");
-        return false;
-    }else{
-        let savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-        let currentUser = highscoreInputName.value.trim();
-        let currentHighscore = {
-            name : currentUser,
-            score : score
-        };
-    
-        gameoverDiv.style.display = "none";
-        highscoreContainer.style.display = "flex";
-        highscoreDiv.style.display = "flex";
-        endGameBtns.style.display = "flex";
-        
-        savedHighscores.push(currentHighscore);
-        localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
-        generateHighscores();
-
-    }
-    
-});
-
 // This function clears the list for the high scores and generates a new high score list from local storage
-function generateHighscores() {
+function generateHighScores() {
+    highscoreInputName.innerHTML = "";
     highscoreDisplayName.innerHTML = "";
-    highscoreDisplayScore.innerHTML = "";
     var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     for (i=0; i<highscores.length; i++){
         var newNameSpan = document.createElement("li");
@@ -149,9 +114,41 @@ function generateHighscores() {
         newNameSpan.textContent = highscores[i].name;
         newScoreSpan.textContent = highscores[i].score;
         highscoreDisplayName.appendChild(newNameSpan);
-        highscoreDisplayScore.appendChild(newScoreSpan);
+        highscoreInputName.appendChild(newScoreSpan);
     }
 }
+
+// This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
+function showScore() {
+    quizBody.style.display = "none"
+    gameoverDiv.style.display = "flex";
+    clearInterval(timerInterval);
+    highscoreInputName.value = "";
+    displayScore.innerHTML = "You got " + score + " out of " + questions.length + " correct!";
+}
+
+
+submitScoreBtn.addEventListener("click", showScore()) 
+       
+    let savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+    let currentUser = highscoreInputName.value.trim();
+    let currentHighscore = {
+        name : currentUser,
+        score : score
+        };
+    
+    gameoverDiv.style.display = "none";
+    highscoreContainer.style.display = "flex";
+    endGameBtns.style.display = "flex";
+        
+    savedHighscores.push(currentHighscore);
+    localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
+
+    generateHighScores();
+
+    if (highscoreInputName.value === "") {
+        alert("Initials cannot be blank");
+    }
 
 // This function displays the high scores page while hiding all of the other pages from 
 function showHighscore() {
