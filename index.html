@@ -5,13 +5,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <title>JavaScript Quizr</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Play&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/css/styles.css" />
     </head>
 
     <body>
         <header>
 
-            <div class="row">
+            <div class="header_row">
 
                 <div class="scoreboard">
 
@@ -22,7 +26,7 @@
 
                 <div class="countdown_timer">
 
-                    <p id="time">Score: </p>
+                    <p id="time">Time: </p>
 
                 </div>
 
@@ -33,7 +37,7 @@
         <main>
             <section id="intro">
 
-                <div class="row">
+                <div class="intro_row">
 
                     <div id="title">
 
@@ -41,7 +45,7 @@
 
                         <p id="intro_text">Try to answer the following javascript questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
 
-                        <button id="start" type="button">Start Quiz</button>
+                        <button id="start" type="button" onclick="startQuiz()">Start Quiz</button>
                     </div>
 
                 </div>
@@ -50,19 +54,21 @@
 
             <section id="quiz">
 
-                <div class="row">
+                <div class="question_rowrow">
 
                     <div id="questions">
 
                         <h2 id="question">question placeholder</h2>
 
-                        <button id="a" onclick="checkAnswer('a')">A</button>
+                        <button id="a">A</button>
 
-                        <button id="b" onclick="checkAnswer('b')">B</button>
+                        <button id="b">B</button>
 
-                        <button id="c" onclick="checkAnswer('c')">C</button>
+                        <button id="c">C</button>
 
-                        <button id="d" onclick="checkAnswer('d')">D</button>
+                        <button id="d">D</button>
+
+                        <p id="result"></p>
 
                     </div>
 
@@ -72,17 +78,17 @@
 
             <section id="game_over">
 
-                <div class="row">
+                <div class="game_over_row">
                     
                     <div class="final_score">
 
                         <h2>All done!</h2>
 
-                        <p>Your final score is: </p>
+                        <p id="your_score">Your final score is: </p>
 
-                        <p>Enter initials: ><input type="text" size = "40" placeholder="Enter you initials for high score" name="intials" id="initials"/>
+                        <p>Enter initials: ><input type="text" size = "40" placeholder="Enter you initials for high score" name="initials" id="initials"/>
 
-                            <button id="submit-score" type="button">Submit</button>
+                            <button id="submit_score" type="button">Submit</button>
                         </p>
 
                     </div>
@@ -93,17 +99,23 @@
 
             <section id="high_scores">
 
-                <div class="row">
+                <div class="high_row">
                     
                     <div class="top_scores">
 
-                        <h2>High Scores</h2>
+                        <h2 id="user_initials">User Initials</h2>
+
+                        <h3 id="your_score">Score:</h3>
                       
                         <ol id="score-list">
                            
                         </ol>
 
-                        <button id="goback">Go back</button>
+                    </div>
+
+                    <div id="reset_button">
+
+                        <button id="replay">Play Agian?</button>
 
                         <button id="clearscores">Clear scores</button>
 
@@ -116,7 +128,7 @@
 
         </main>
 
-        <script src="assets/js/script.js"></script>
+        <script src="assets/js/scripts.js"></script>
 
     </body>
 
