@@ -60,13 +60,13 @@
 
                         <h2 id="question">question placeholder</h2>
 
-                        <button id="a"  checkAnswer(buttonA)>A</button>
+                        <button id="a" onclick=checkAnswer(this)>A</button>
 
-                        <button id="b">B</button>
+                        <button id="b" onclick=checkAnswer(this)>B</button>
 
-                        <button id="c">C</button>
+                        <button id="c" onclick=checkAnswer(this)>C</button>
 
-                        <button id="d">D</button>
+                        <button id="d" onclick=checkAnswer(this)>D</button>
 
                         <p id="result"></p>
 
@@ -86,7 +86,7 @@
 
                         <p id="your_score">Your final score is: </p>
 
-                        <p>Enter initials: ><input type="text" size = "40" placeholder="Enter you initials for high score" name="initials" id="initials"/>
+                        <p>Enter initials: <input type="text" size = "40" placeholder="Enter you initials for high score" name="initials" id="initials"/>
 
                             <button id="submit_score" type="button">Submit</button>
                         </p>
@@ -115,9 +115,9 @@
 
                     <div id="reset_button">
 
-                        <button id="replay">Play Agian?</button>
+                        <button id="replay" onclick="replayQuiz()">Play Agian?</button>
 
-                        <button id="clearscores">Clear scores</button>
+                        <button id="clearscores"  onclick="clearScore()">Clear scores</button>
 
                     </div>
 

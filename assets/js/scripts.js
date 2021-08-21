@@ -18,7 +18,10 @@ let buttonA = document.getElementById("a");
 let buttonB = document.getElementById("b");
 let buttonC = document.getElementById("c");
 let buttonD = document.getElementById("d");
+let finale = document.getElementById(".final_score");
+let questionNumber = 0;
 
+// create our array of question, choices and answers
 const questions = [
     {
       title: "Commonly used data types DO NOT include:",
@@ -54,33 +57,31 @@ const questions = [
     }
 ];
 
-  // Other global variables
+// Other global variables
 let timeLeft = 90;
 let timerInterval;
 let score = 0;
 let correct;
 let currentQuestion = "";
 
-quizBody.style.display = "none";
-gameOver.style.display = "none";
-highscoreContainer.style.display = "none";
-
+// function to generat and fill in the question, choices and answeers from our array
 function generateQuizQuestion(){
 
-    for (let i=0; i < questions.length; i++) {
-        let currentQuestion = questions[i].title;
+        currentQuestion = questions[questionNumber].title;
         questionsEl.innerHTML = "<p>" + currentQuestion + "</p>";
-        buttonA.innerHTML = questions[i].choices[0];
-        buttonB.innerHTML = questions[i].choices[1];
-        buttonC.innerHTML = questions[i].choices[2];
-        buttonD.innerHTML = questions[i].choices[3];
+        buttonA.innerHTML = questions[questionNumber].choices[0];
+        buttonB.innerHTML = questions[questionNumber].choices[1];
+        buttonC.innerHTML = questions[questionNumber].choices[2];
+        buttonD.innerHTML = questions[questionNumber].choices[3];
 
-        if (currentQuestion[i] === questions.length) {
-            return showScore();
-        }
+        buttonA.dataset.indexNumber = questionNumber;
+        buttonB.dataset.indexNumber = questionNumber;
+        buttonC.dataset.indexNumber = questionNumber;
+        buttonD.dataset.indexNumber = questionNumber; 
 
-    } 
-
+        if (questionNumber === 5) {
+          showScore();
+        };
 };
 
 // Start Quiz function starts the Timer, hides the start button, and displays the first quiz question.
@@ -92,14 +93,16 @@ function startQuiz() {
 
     //Timer
     timerInterval = setInterval(function() {
-        timeLeft--;
-        quizTimer.textContent = "Time left: " + timeLeft;
-    
-        if(timeLeft === 0) {
-          clearInterval(timerInterval);
-          showScore();
-        }
-      }, 1000);
+
+      timeLeft--;
+      quizTimer.textContent = "Time left: " + timeLeft;
+
+      if (timeLeft === 0) {
+        clearInterval(timerInterval);
+        showScore();
+      }
+    }, 1000);
+
     quizBody.style.display = "flex";
 }
 
@@ -108,7 +111,7 @@ function generateHighScores() {
     highscoreInputName.innerHTML = "";
     highscoreDisplayName.innerHTML = "";
     var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i=0; i<highscores.length; i++){
+    for (i=0; i<highscores.length; i++) {
         var newNameSpan = document.createElement("li");
         var newScoreSpan = document.createElement("li");
         newNameSpan.textContent = highscores[i].name;
@@ -120,15 +123,16 @@ function generateHighScores() {
 
 // This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
 function showScore() {
-    quizBody.style.display = "none"
-    gameOver.style.display = "flex";
+    quizBody.style.display = "none";
+    highscoreContainer.style.display = "flex";
+    finale.style.display = "flex";
     clearInterval(timerInterval);
     highscoreInputName.value = "";
     displayScore.innerHTML = "You got " + score + " out of " + questions.length + " correct!";
 }
 
 
-submitScoreBtn.addEventListener("click", showScore());
+submitScoreBtn.addEventListener("click", showScore);
        
     let savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     let currentUser = highscoreInputName.value.trim();
@@ -136,10 +140,6 @@ submitScoreBtn.addEventListener("click", showScore());
         name : currentUser,
         score : score
     };
-    
-    gameOver.style.display = "none";
-    highscoreContainer.style.display = "flex";
-    endGameBtns.style.display = "flex";
         
     savedHighscores.push(currentHighscore);
     localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
@@ -171,26 +171,22 @@ function replayQuiz() {
     startQuizDiv.style.display = "flex";
     timeLeft = 90;
     score = 0;
+    startQuiz();
 }
 
-// This function checks the response to each answer 
-buttonA.addEventListener("click", checkAnswer(buttonA));
-buttonB.addEventListener("click", checkAnswer(buttonB));
-buttonC.addEventListener("click", checkAnswer(buttonC));
-buttonD.addEventListener("click", checkAnswer(buttonD));
-
 function checkAnswer(answer) {
-    correct = questions.answer;
+  console.log(answer)
+    correct = questions[answer.dataset.indexNumber].answer;
 
-    if (answer === correct && currentQuestion !== questions.length){
+    if (answer.textContent === correct && questionNumber !== questions.length){
         score++;
         alert("That Is Correct!");
-        currentQuestion++;
+        questionNumber++;
         generateQuizQuestion();
         //display in the results div that the answer is correct.
-    }else if (answer !== correct && currentQuestion !== questions.length){
+    }else if (answer.textContent !== correct && questionNumber !== questions.length){
         alert("That Is Incorrect.")
-        currentQuestion++;
+        questionNumber++;
         generateQuizQuestion();
         timeLeft = timeLeft - 10;
         //display in the results div that the answer is wrong.
@@ -200,4 +196,4 @@ function checkAnswer(answer) {
 }
 
 // This button starts the quiz!
-startQuizButton.addEventListener("click", startQuiz());
+startQuizButton.addEventListener("click", startQuiz);

@@ -1,160 +1,165 @@
+/* set background color and font family for page */
 :root{
     background-color: rosybrown;
     font-family: 'Play', sans-serif;;
 }
+   
+/* style the list elements */
+li {
+    padding-bottom: 3px;
+    color: white;
+    text-shadow: 1.5px 1px 3px black;
+    list-style-type: none;
+}
     
-    li {
-        padding-bottom: 3px;
-        color: white;
-        text-shadow: 1.5px 1px 3px black;
-        list-style-type: none;
-    }
+p {
+    color: black;
+    text-align: center;
+    font-size: xx-large;
+}
+
+h1 {
+    text-align: center;
+    font-size: 48px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 36px;
+}
+
+input {
+    text-align: center;
+}
+
+/* decorate our buttons and align them */
+button {
+    background-color: #5e6df1;
+    border-radius: 10px;
+    border: 3px double #cccccc;
+    color: #eeeeee;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    width: 200px;
+    margin-top: 3px;
+}
     
-    p {
-        color: black;
-        text-align: center;
-        font-size: xx-large;
+button:hover{
+    box-shadow: 4px 3px 6px #4450bd;
+}
+
+/* display header for all screens and take up whole width */
+header {
+    display: block
+    width: 100%;
+    padding: 0 10px 0 10px;
+}
+
+.header_row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+}
     
-    }
+.scoreboard {
+    justify-content: flex-start;        
+    padding: 5px;
+    margin-left: 10px;
+}
 
-    h1 {
-        text-align: center;
-        font-size: 48px;
-    }
+.countdown_timer {
+    padding: 5px;
+    margin-right: 60px;
+    justify-content: flex-end;
+}
 
-    h2 {
-        text-align: center;
-        font-size: 36px;
-    }
+#time {
+    color: #eeeeee;
+    font-size: x-large;
+    text-align: center;
+}
 
-    input {
-        text-align: center;
-    }
+/* create out main container and center everything */
+main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 80rem;
+    margin: 0 auto;
+    flex-direction: column;
+}
 
-    button {
-        background-color: #5e6df1;
-        border-radius: 10px;
-        border: 3px double #cccccc;
-        color: #eeeeee;
-        text-align: center;
-        font-size: 15px;
-        padding: 20px;
-        width: 200px;
-        margin-top: 3px;
-      }
+#intro {
+    display: flex
+}
     
-    button:hover{
-        box-shadow: 4px 3px 6px #4450bd;
-    }
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
-    header {
-        display: block
-        width: 100%;
-        padding: 0 10px 0 10px;
-    }
+/* set initial display to none for startup */
+#quiz {
+    display: none;
+}
 
-    .header_row {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 20px;
-    }
+#questions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* set initial display to none for startup */
+#game_over {
+    display: none;
+}
+
+.final_score {
+    display: none;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+}
     
-    .scoreboard {
-        justify-content: flex-start;        
-        padding: 5px;
-        margin-left: 10px;
-    }
+#your_score {
+    font-weight: bold;
+}
 
-    .countdown_timer {
-        padding: 5px;
-        margin-right: 60px;
-        justify-content: flex-end;
-    }
+#initials {
+    margin: .5rem;
+    height: 1.75rem;
+}
 
-    #time {
-        color: #eeeeee;
-        font-size: x-large;
-        text-align: center;
-    }
+/* set initial display to none for startup */
+#high_scores {
+    display: none;
+}
 
-    main {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        max-width: 80rem;
-        margin: 0 auto;
-        flex-direction: column;
-    }
-
-    #intro {
-        display: flex
-    }
+.high_row {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
     
-    #title {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        
-    }
-
-    #quiz {
-        display: none;
-    }
-
-    #questions {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    #game_over {
-        display: none;
-    }
-
-    .final_score {
-        display: flex;
-        text-align: center;
-        align-items: center;
-        flex-direction: column;
-    }
-    
-    #your_score {
-        font-weight: bold;
-    }
-
-    #initials {
-        margin: .5rem;
-        height: 1.75rem;
-    }
-
-    #high_scores {
-        display: none;
-    }
-
-    .high_row {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-    
-    .top_scores {
-        flex-direction: column;
-        justify-content: center;
-        background-color: #5e6df1;
-        color: #eeeeee;
-    }
+.top_scores {
+    flex-direction: column;
+    justify-content: center;
+    background-color: #5e6df1;
+    color: #eeeeee;
+}
     
     
-    #reset_button {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
+#reset_button {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
