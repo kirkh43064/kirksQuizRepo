@@ -106,21 +106,6 @@ function startQuiz() {
     quizBody.style.display = "flex";
 }
 
-// This function clears the list for the high scores and generates a new high score list from local storage
-function generateHighScores() {
-    highscoreInputName.innerHTML = "";
-    highscoreDisplayName.innerHTML = "";
-    var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
-    for (i=0; i<highscores.length; i++) {
-        var newNameSpan = document.createElement("li");
-        var newScoreSpan = document.createElement("li");
-        newNameSpan.textContent = highscores[i].name;
-        newScoreSpan.textContent = highscores[i].score;
-        highscoreDisplayName.appendChild(newNameSpan);
-        highscoreInputName.appendChild(newScoreSpan);
-    }
-}
-
 // This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
 function showScore() {
     quizBody.style.display = "none";
@@ -131,21 +116,40 @@ function showScore() {
     displayScore.innerHTML = "You got " + score + " out of " + questions.length + " correct!";
 }
 
+// This function clears the list for the high scores and generates a new high score list from local storage
+function generateHighScores() {
+  highscoreInputName.innerHTML = "";
+  highscoreDisplayName.innerHTML = "";
+  var highscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
+  for (i=0; i<highscores.length; i++) {
+      var newNameSpan = document.createElement("li");
+      var newScoreSpan = document.createElement("li");
+      newNameSpan.textContent = highscores[i].name;
+      newScoreSpan.textContent = highscores[i].score;
+      highscoreDisplayName.appendChild(newNameSpan);
+      highscoreInputName.appendChild(newScoreSpan);
+  }
+}
 
-submitScoreBtn.addEventListener("click", showScore);
-       
+submitScoreBtn.addEventListener("click", function highscore(){
+  if(highscoreInputName.value === "") {
+    alert("Initials cannot be blank");
+  }
+  
+  else{ 
     let savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     let currentUser = highscoreInputName.value.trim();
     let currentHighscore = {
         name : currentUser,
         score : score
     };
-        
+  
     savedHighscores.push(currentHighscore);
     localStorage.setItem("savedHighscores", JSON.stringify(savedHighscores));
 
     generateHighScores();
-
+  }
+}
 
 
 // This function displays the high scores page while hiding all of the other pages from 
