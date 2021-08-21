@@ -2,7 +2,7 @@
 let quizBody = document.getElementById("quiz");
 let resultsEl = document.getElementById("result");
 let finalScoreEl = document.getElementById("your_score");
-let gameoverDiv = document.getElementById("game_over");
+let gameOver = document.getElementById("game_over");
 let questionsEl = document.getElementById("question");
 let quizTimer = document.getElementById("time");
 let startQuizButton = document.getElementById("start");
@@ -62,7 +62,7 @@ let correct;
 let currentQuestion = "";
 
 quizBody.style.display = "none";
-gameoverDiv.style.display = "none";
+gameOver.style.display = "none";
 highscoreContainer.style.display = "none";
 
 function generateQuizQuestion(){
@@ -121,23 +121,23 @@ function generateHighScores() {
 // This function is the end page screen that displays your score after either completeing the quiz or upon timer run out
 function showScore() {
     quizBody.style.display = "none"
-    gameoverDiv.style.display = "flex";
+    gameOver.style.display = "flex";
     clearInterval(timerInterval);
     highscoreInputName.value = "";
     displayScore.innerHTML = "You got " + score + " out of " + questions.length + " correct!";
 }
 
 
-submitScoreBtn.addEventListener("click", showScore()) 
+submitScoreBtn.addEventListener("click", showScore());
        
     let savedHighscores = JSON.parse(localStorage.getItem("savedHighscores")) || [];
     let currentUser = highscoreInputName.value.trim();
     let currentHighscore = {
         name : currentUser,
         score : score
-        };
+    };
     
-    gameoverDiv.style.display = "none";
+    gameOver.style.display = "none";
     highscoreContainer.style.display = "flex";
     endGameBtns.style.display = "flex";
         
@@ -146,17 +146,13 @@ submitScoreBtn.addEventListener("click", showScore())
 
     generateHighScores();
 
-    if (highscoreInputName.value === "") {
-        alert("Initials cannot be blank");
-    }
+
 
 // This function displays the high scores page while hiding all of the other pages from 
 function showHighscore() {
     startQuizDiv.style.display = "none"
-    gameoverDiv.style.display = "none";
+    gameOver.style.display = "none";
     highscoreContainer.style.display = "flex";
-    highscoreDiv.style.display = "block";
-    endGameBtns.style.display = "flex";
 
     generateHighscores();
 }
@@ -171,23 +167,28 @@ function clearScore() {
 // This function sets all the variables back to their original values and shows the home page to enable replay of the quiz
 function replayQuiz() {
     highscoreContainer.style.display = "none";
-    gameoverDiv.style.display = "none";
+    gameOver.style.display = "none";
     startQuizDiv.style.display = "flex";
     timeLeft = 90;
     score = 0;
 }
 
 // This function checks the response to each answer 
-function checkAnswer(answer) {
-    correct = quizQuestions[currentQuestion].answer;
+buttonA.addEventListener("click", checkAnswer(buttonA));
+buttonB.addEventListener("click", checkAnswer(buttonB));
+buttonC.addEventListener("click", checkAnswer(buttonC));
+buttonD.addEventListener("click", checkAnswer(buttonD));
 
-    if (answer === correct && currentQuestion !== currentQuestion.length){
+function checkAnswer(answer) {
+    correct = questions.answer;
+
+    if (answer === correct && currentQuestion !== questions.length){
         score++;
         alert("That Is Correct!");
         currentQuestion++;
         generateQuizQuestion();
         //display in the results div that the answer is correct.
-    }else if (answer !== correct && currentQuestion !== currentQuestion.length){
+    }else if (answer !== correct && currentQuestion !== questions.length){
         alert("That Is Incorrect.")
         currentQuestion++;
         generateQuizQuestion();

@@ -31,6 +31,22 @@
         text-align: center;
     }
 
+    button {
+        background-color: #5e6df1;
+        border-radius: 10px;
+        border: 3px double #cccccc;
+        color: #eeeeee;
+        text-align: center;
+        font-size: 15px;
+        padding: 20px;
+        width: 200px;
+        margin-top: 3px;
+      }
+    
+    button:hover{
+        box-shadow: 4px 3px 6px #4450bd;
+    }
+
     header {
         display: block
         width: 100%;
@@ -58,6 +74,12 @@
         justify-content: flex-end;
     }
 
+    #time {
+        color: #eeeeee;
+        font-size: x-large;
+        text-align: center;
+    }
+
     main {
         width: 100vw;
         height: 100vh;
@@ -67,24 +89,11 @@
         max-width: 80rem;
         margin: 0 auto;
         flex-direction: column;
-      }
-    
-    button {
-        display: inline-block;
-        background-color: #5e6df1;
-        border-radius: 10px;
-        border: 3px double #cccccc;
-        color: #eeeeee;
-        text-align: center;
-        font-size: 15px;
-        padding: 20px;
-        width: 200px;
-        margin-top: 3px;
-      }
-    
-      button:hover{
-          box-shadow: 4px 3px 6px #4450bd;
-      }
+    }
+
+    #intro {
+        display: flex
+    }
     
     #title {
         display: flex;
@@ -93,14 +102,7 @@
         justify-content: center;
         
     }
-    
-    #time {
-        background-color: #5a69f0;
-        color: #eeeeee;
-        font-size: x-large;
-        text-shadow: .5px .5px black;
-        text-align: center;
-    }
+
     #quiz {
         display: none;
     }
@@ -127,12 +129,16 @@
         font-weight: bold;
     }
 
+    #initials {
+        margin: .5rem;
+        height: 1.75rem;
+    }
+
     #high_scores {
         display: none;
     }
 
     .high_row {
-        border: groove 2px;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -145,10 +151,6 @@
         color: #eeeeee;
     }
     
-    #initials {
-        margin: .5rem;
-        height: 1.75rem;
-    }
     
     #reset_button {
         flex-direction: column;
