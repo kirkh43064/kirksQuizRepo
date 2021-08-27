@@ -45,7 +45,7 @@
 
                         <p id="intro_text">Try to answer the following javascript questions within the time limit. Keep in mind that incorrect answers will penalize your time by ten seconds!</p>
 
-                        <button id="start" type="button" onclick="startQuiz()">Start Quiz</button>
+                        <button id="start" type="button">Start Quiz</button>
                     </div>
 
                 </div>
@@ -80,7 +80,7 @@
 
                 <div class="game_over_row">
                     
-                    <div class="final_score">
+                    <div id="final_score">
 
                         <h2>All done!</h2>
 
@@ -99,9 +99,9 @@
 
             <section id="high_scores">
 
-                <div class="high_row">
+                <div id="high_row">
                     
-                    <div class="top_scores">
+                    <div id="top_scores">
 
                         <h2 id="user_initials">User Initials</h2>
 
@@ -115,7 +115,7 @@
 
                     <div id="reset_button">
 
-                        <button id="replay" onclick="replayQuiz()">Play Agian?</button>
+                        <!-- <button id="replay" onclick="replayQuiz()">Play Agian?</button> -->
 
                         <button id="clearscores"  onclick="clearScore()">Clear scores</button>
 
